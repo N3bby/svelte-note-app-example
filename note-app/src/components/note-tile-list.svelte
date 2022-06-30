@@ -1,14 +1,8 @@
 <script lang="ts">
     import {Note} from '../model/note';
     import NoteTile from './note-tile.svelte';
-    import {createEventDispatcher} from 'svelte';
 
     export let notes: Note[];
-
-    const dispatcher = createEventDispatcher<{noteRemoved: Note}>()
-    function removeNote(e: CustomEvent<Note>) {
-        dispatcher('noteRemoved', e.detail);
-    }
 </script>
 
 <style lang="scss">
@@ -21,7 +15,7 @@
 
 <div class="note-list">
     {#each notes as note}
-        <NoteTile note={note} on:noteRemoved={removeNote}/>
+        <NoteTile note={note} on:noteRemoved/>
     {/each}
 </div>
 
